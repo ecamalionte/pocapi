@@ -20,8 +20,8 @@ defmodule Pocapi.Router do
     resources "/products", ProductController
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Pocapi do
-  #   pipe_through :api
-  # end
+  scope "/api", Pocapi do
+    pipe_through :api
+    resources "/products", ProductController, only: [:index, :show, :create, :update, :delete]
+  end
 end
