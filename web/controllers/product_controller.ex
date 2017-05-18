@@ -28,7 +28,7 @@ defmodule Pocapi.ProductController do
 
   def show(conn, %{"id" => id}) do
     product = Repo.get!(Product, id)
-    render(conn, "show.html", product: product)
+    render(conn, :show, product: product)
   end
 
   def edit(conn, %{"id" => id}) do
