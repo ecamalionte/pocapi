@@ -5,7 +5,7 @@ defmodule Pocapi.ProductController do
 
   def index(conn, _params) do
     products = Repo.all(Product)
-    render(conn, "index.html", products: products)
+    render(conn, :index, products: products)
   end
 
   def new(conn, _params) do
