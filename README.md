@@ -4,7 +4,8 @@ An (Elixir/Phoenix) proof of concept (POC), the purpose of which is to verify th
 To configure:
 
   * `mix deps.get`
-  * `mix ecto.create & ecto.migrate`
+  * `mix ecto.create`
+  * `ecto.migrate`
   * `mix test`
 
 To start your Phoenix app:
@@ -28,7 +29,7 @@ How this app was created:
   * It could be done with `createuser -s postgres` for creating and setting Superuser role.
   * Create a Database on Postgres `mix ecto.create`
   * Create a CRUD for Products `mix phoenix.gen.html Product products name:string description:string rating:integer price:float`
-  * Run Database migration `mix phoenix.migrate`
+  * Run Database migration `mix ecto.migrate`
 
 ## Learn more
 
