@@ -24,8 +24,8 @@ How this app was created:
 
   * Create the app `mix phoenix.new pocapi`
   * Create a Database on Postgres `mix ecto.create`
-  * I had to access the postgres `psql postgres`
-  * And alter the role of the postgres user as `ALTER USER postgres SUPERUSER;`
+  * I had to access the postgres `psql postgres`, and alter the role `ALTER USER postgres SUPERUSER;`
+  * It could be done with `createuser -s postgres` for creating and setting Superuser role.
   * Create a Database on Postgres `mix ecto.create`
   * Create a CRUD for Products `mix phoenix.gen.html Product products name:string description:string rating:integer price:float`
   * Run Database migration `mix phoenix.migrate`
