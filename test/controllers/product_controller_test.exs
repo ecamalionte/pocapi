@@ -33,7 +33,7 @@ defmodule Pocapi.ProductControllerTest do
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
+    assert_error_sent 302, fn ->
       get conn, product_path(conn, :show, -1)
     end
   end

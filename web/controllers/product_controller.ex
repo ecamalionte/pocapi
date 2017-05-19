@@ -1,6 +1,8 @@
 defmodule Pocapi.ProductController do
   use Pocapi.Web, :controller
 
+  require IEx
+
   alias Pocapi.Product
 
   def index(conn, _params) do
@@ -27,18 +29,18 @@ defmodule Pocapi.ProductController do
   end
 
   def show(conn, %{"id" => id}) do
-    product = Repo.get!(Product, id)
+    product = find_product(conn, id)
     render(conn, :show, product: product)
   end
 
   def edit(conn, %{"id" => id}) do
-    product = Repo.get!(Product, id)
+    product = find_product(conn, id)
     changeset = Product.changeset(product)
     render(conn, "edit.html", product: product, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "product" => product_params}) do
-    product = Repo.get!(Product, id)
+    product = find_product(conn, id)
     changeset = Product.changeset(product, product_params)
 
     case Repo.update(changeset) do
@@ -52,14 +54,22 @@ defmodule Pocapi.ProductController do
   end
 
   def delete(conn, %{"id" => id}) do
-    product = Repo.get!(Product, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
+    product = find_product(conn,id)
     Repo.delete!(product)
-
     conn
     |> put_flash(:info, "Product deleted successfully.")
     |> redirect(to: product_path(conn, :index))
+  end
+
+
+  defp find_product(conn, id) do
+    product = Repo.get(Product, id)
+    unless product do
+      conn
+      |> put_flash(:error, "Product not found!")
+      |> redirect(to: product_path(conn, :index))
+    end
+
+    product
   end
 end
