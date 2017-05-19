@@ -14,7 +14,7 @@ To start your Phoenix app:
 
 To pack this application:
 
-  * Run `mix release`. [See Distillery for more information](https://github.com/bitwalker/distillery)
+  * Run `MIX_ENV=prod mix release --env=prod`. [See Distillery for more information](https://github.com/bitwalker/distillery)
   * Ready to run in production!
   * [check deployment guides](http://www.phoenixframework.org/docs/deployment).
 
