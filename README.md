@@ -19,6 +19,14 @@ To pack this application:
   * Ready to run in production!
   * [check deployment guides](http://www.phoenixframework.org/docs/deployment).
 
+To deploy on AWS:
+  * `scp -i ~/.ssh/MyKeyPair.pem package ec2-user@instance.compute.amazonaws.com:~\`
+
+To hack as DevOps on AWS:
+  * `ssh -i ~/.ssh/MyKeyPair.pem ec2-user@instance.compute.amazonaws.com`
+
+
+
 ## Commands History
 
 How this app was created:
