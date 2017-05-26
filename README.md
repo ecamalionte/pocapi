@@ -15,6 +15,9 @@ To start your Phoenix app:
 
 To pack this application:
 
+  * ./node_modules/brunch/bin/brunch b -p build’s your assets in production mode. More detail can be found in the Phoenix Static Asset Guide
+  * MIX_ENV=prod mix phoenix.digest To compress and tag your assets for proper caching. More detail can be found in the Phoenix Mix Task Guide
+  * mix release --env=prod To actually generate a release for a production environment
   * Run `MIX_ENV=prod mix release --env=prod`. [See Distillery for more information](https://github.com/bitwalker/distillery)
   * Ready to run in production!
   * [check deployment guides](http://www.phoenixframework.org/docs/deployment).
