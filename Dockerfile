@@ -19,9 +19,6 @@ RUN mkdir pocapi
 ADD . /pocapi
 WORKDIR /pocapi
 
-# map _build folder to share the built package
-VOLUME ./_build/:./_build
-
 # get all dependencies and prepare assets
 RUN mix local.hex --force
 RUN mix deps.get
@@ -30,15 +27,20 @@ RUN mix phoenix.digest
 RUN mix local.hex --force
 
 # inject ENV vars to configure the ecosystem
-ENV POCAPI_PORT=4000
+ENV POCAPI_PORT=4001
 ENV POCAPI_HOST_URL=localhost
-ENV SECRET_KEY_BASE=
-ENV POCAPI_DATABASE_USERNAME=
+ENV SECRET_KEY_BASE=SicwdzM6BcUnea9wsUSCngtCix+ECUCX+arAEbexNsQBC47DKZWLpqX8s4xwJV7z
+ENV POCAPI_DATABASE_USERNAME=postgres
 ENV POCAPI_DATABASE_PASSWORD=
 ENV POCAPI_DATABASE_NAME=pocapi_prod
-ENV POCAPI_DATABASE_HOSTNAME=localhost
+ENV POCAPI_DATABASE_HOSTNAME=postgres_db
 
 # compile and generate production package
 RUN mix release --env=prod
 
+# make this container act like a CI pushing packages to production env.
+#ADD ./ssh/MyKeyPair.pem .
+#RUN scp -i MyKeyPair.pem ./_build/prod/rel/pocapi/ user@instance.compute.amazonaws.com:~\
+
 CMD ["/bin/bash"]
+
