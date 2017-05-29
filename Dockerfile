@@ -22,7 +22,6 @@ WORKDIR /pocapi
 # map _build folder to share the built package
 VOLUME ./_build/:./_build
 
-
 # get all dependencies and prepare assets
 RUN mix local.hex --force
 RUN mix deps.get
@@ -33,9 +32,9 @@ RUN mix local.hex --force
 # inject ENV vars to configure the ecosystem
 ENV POCAPI_PORT=4000
 ENV POCAPI_HOST_URL=localhost
-ENV SECRET_KEY_BASE=123
-ENV POCAPI_DATABASE_USERNAME=postgres
-ENV POCAPI_DATABASE_PASSWORD=postgres
+ENV SECRET_KEY_BASE=
+ENV POCAPI_DATABASE_USERNAME=
+ENV POCAPI_DATABASE_PASSWORD=
 ENV POCAPI_DATABASE_NAME=pocapi_prod
 ENV POCAPI_DATABASE_HOSTNAME=localhost
 
